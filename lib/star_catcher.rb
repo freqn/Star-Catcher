@@ -21,6 +21,8 @@ class StarCatcher
     log.info("DONE! Your file is now ready in the data directory!")
   end
 
+  private
+
   def build_file(file)
     get_starred.each do |x|
       if x["message"]["attachments"]
