@@ -1,12 +1,13 @@
-require_relative './services/client.rb'
-require_relative './services/log.rb'
+require_relative './services/client_service.rb'
+require_relative './services/log_service.rb'
 
 class StarCatcher
+  include Service
   attr_reader :client, :log
-
+  
   def initialize
-    @log    = Log.new
-    @client = Client.new
+    @log    = Service::LogService.new
+    @client = Service::ClientService.new
     @id     = 0
   end
 
