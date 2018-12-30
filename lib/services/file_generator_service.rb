@@ -27,7 +27,7 @@ module Service
       @id = 0
       get_starred.each do |x|
         if data_valid?(x)
-          item =    build_data(x)
+          item =    structured_data(x)
           record =  formatted_data(item)
           file.write("#{record}\n")
         end
@@ -40,7 +40,7 @@ module Service
   
     Data = Struct.new(:id, :title, :desc, :link)
   
-    def build_data(item)
+    def structured_data(item)
       Data.new(@id += 1,
               item["message"]["attachments"][0]["title"] || "",
               item["message"]["attachments"][0]["text"] || "",
