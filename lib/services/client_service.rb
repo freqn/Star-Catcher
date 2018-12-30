@@ -8,7 +8,7 @@ module Service
       @client = AuthorizeService.new.session
     end
   
-    def stars_list
+    def stars
       client.stars_list["items"]
     end
   end

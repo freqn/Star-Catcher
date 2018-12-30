@@ -11,7 +11,7 @@ module Service
     end
 
     def get_starred
-      client.stars_list
+      client.stars
     end
 
     def generate
