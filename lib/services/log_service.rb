@@ -8,12 +8,12 @@ module Service
       @log = Logger.new(STDOUT)
     end
   
-    def info(message)
-      log.info(message)
+    def info(msg)
+      log.info(msg)
     end
   
-    def error(message)
-      log.error(message)
+    def error(msg)
+      log.error(msg)
     end
   end
 end

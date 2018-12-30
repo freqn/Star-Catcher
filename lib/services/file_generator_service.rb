@@ -6,8 +6,8 @@ module Service
     attr_reader :client, :log
 
     def initialize
-      @log = LogService.new
       @client = ClientService.new
+      @log    = LogService.new
     end
 
     def get_starred
@@ -15,7 +15,7 @@ module Service
     end
 
     def generate
-      File.open("../data/data.txt","w") do |f|
+      File.open("../data.txt","w") do |f|
         generate_file(f)
       end
       log_success
@@ -27,11 +27,15 @@ module Service
       @id = 0
       get_starred.each do |x|
         if data_valid?(x)
-          item =    structured_data(x)
-          record =  formatted_data(item)
-          file.write("#{record}\n")
+          item    = structured_data(x)
+          record  = formatted_data(item)
+          append(file, record)
         end
       end
+    end
+    
+    def append(file, record)
+      file.write("#{record}\n")
     end
 
     def data_valid?(x)
