@@ -6,12 +6,12 @@ module Service
     attr_reader :client, :log
 
     def initialize
-      @client = ClientService.new
+      @client = ClientService.new.session
       @log    = LogService.new
     end
 
-    def get_starred
-      client.stars
+    def stars
+      client.stars_list["items"]
     end
 
     def generate
@@ -25,7 +25,7 @@ module Service
   
     def generate_file(file)
       @id = 0
-      get_starred.each do |x|
+      stars.each do |x|
         if data_valid?(x)
           item    = structured_data(x)
           record  = formatted_data(item)
@@ -60,7 +60,7 @@ module Service
     end
     
     def log_success
-      log.info("DONE! Your file is now ready in the data directory!")
+      log.info("DONE! Your file is now ready in data.txt!")
     end
   end
 end
