@@ -10,10 +10,7 @@ module Service
       @log    = LogService.new
     end
 
-    def stars
-      client.stars_list["items"]
-    end
-
+    
     def generate
       File.open("../data.txt","w") do |f|
         generate_file(f)
@@ -22,7 +19,11 @@ module Service
     end
     
     private
-  
+    
+    def stars
+      client.stars_list["items"]
+    end
+    
     def generate_file(file)
       @id = 0
       stars.each do |x|
